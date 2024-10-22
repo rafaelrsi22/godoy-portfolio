@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image";
 import Stars from "./components/Stars";
 import BloomBackground from "./components/BloomBackground";
 import GradientTitle from "./components/GradientTitle";
@@ -20,7 +19,7 @@ export default function Home() {
           of your idea.
         </GradientTitle>
         <GradientText className="mt-6">
-          I'm <span className="text-white font-semibold">Rafael Godoy</span>, turning your ideas into reality with<br />
+          I&apos;m <span className="text-white font-semibold">Rafael Godoy</span>, turning your ideas into reality with<br />
           creativity and collaboration.
         </GradientText>
         <GradientButton

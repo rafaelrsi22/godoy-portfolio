@@ -1,5 +1,4 @@
-"use client"
-import React, { use, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 interface StarsProps {
   numOfStars: number;
