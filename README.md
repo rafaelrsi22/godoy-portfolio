@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Portfolio Landing Page
 
-## Getting Started
+Este é o repositório do meu portfólio pessoal, desenvolvido com **Next.js** e **Tailwind CSS**. O objetivo deste projeto é apresentar minhas habilidades, projetos e fornecer uma forma fácil de contato para potenciais clientes ou empregadores.
 
-First, run the development server:
+## 🛠️ Tecnologias Utilizadas
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Next.js**: Framework React para renderização do lado do servidor e geração de sites estáticos.
+- **Tailwind CSS**: Framework CSS utilitário-first para estilização rápida e customizável.
+- **React**: Para construção de componentes interativos da página.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌟 Funcionalidades
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Design Responsivo**: O layout é totalmente responsivo, adaptando-se perfeitamente a diferentes tamanhos de tela (desktop, tablet, mobile).
+- **Transições Suaves**: Efeitos de hover e transições, como a borda gradiente expandida nos botões, melhoram a experiência do usuário.
+- **Design Moderno**: A combinação de Next.js e Tailwind CSS permite seguir princípios de design modernos, limpos e rápidos.
+- **Otimizado para Performance**: Utilizando os recursos de otimização do Next.js, como code-splitting e geração estática, para garantir carregamento rápido das páginas.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Como Rodar o Projeto
 
-## Learn More
+Siga os passos abaixo para rodar o projeto localmente:
 
-To learn more about Next.js, take a look at the following resources:
+### Pré-requisitos
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Certifique-se de ter as seguintes ferramentas instaladas:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Node.js (v14 ou superior)
+- npm (ou yarn)
 
-## Deploy on Vercel
+### Instalação
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Clone o repositório:
+   git clone https://github.com/seu-usuario/seu-repositorio.git
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Navegue até o diretório do projeto:
+   cd seu-repositorio
+
+3. Instale as dependências:
+   npm install
+
+### Rodando o projeto
+
+Para rodar o projeto em ambiente de desenvolvimento, use o seguinte comando:
+
+   npm run dev
+
+Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o projeto.
+
+## 📦 Deploy
+
+O projeto pode ser facilmente deployado em qualquer plataforma que suporte aplicações **Next.js**. Aqui estão algumas opções:
+
+- [Vercel](https://vercel.com/) (recomendado)
+- [Netlify](https://www.netlify.com/)
+- [Heroku](https://www.heroku.com/)
+
+## 📂 Estrutura do Projeto
+
+Aqui está uma visão geral da estrutura de pastas do projeto:
+
+.
+├── components/        # Componentes React reutilizáveis
+├── pages/             # Páginas do Next.js
+├── public/            # Arquivos estáticos
+├── styles/            # Estilos globais e específicos
+├── README.md          # Documentação do projeto
+└── package.json       # Dependências e scripts do projeto
+
+## 📧 Contato
+
+Se você quiser saber mais sobre o projeto ou entrar em contato, sinta-se à vontade para enviar uma mensagem!
+
+---
+Desenvolvido com ❤️ por [Seu Nome](https://seuwebsite.com)
