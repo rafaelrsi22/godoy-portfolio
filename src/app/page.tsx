@@ -1,7 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion";
-
 import Stars from "./components/Stars";
 import BloomBackground from "./components/BloomBackground";
 import GradientTitle from "./components/GradientTitle";
@@ -24,7 +22,7 @@ export default function Home() {
         </GradientTitle>
         <FadeIn duration={2.5}>
           <GradientText className="mt-6">
-            I'm <span className="text-white font-semibold">Rafael Godoy</span>, turning your ideas into reality with
+            I&apos;m <span className="text-white font-semibold">Rafael Godoy</span>, turning your ideas into reality with
             <br />
             creativity and collaboration.
           </GradientText>
