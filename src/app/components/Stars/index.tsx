@@ -52,7 +52,7 @@ export default function Stars({
       context.clearRect(0, 0, canvas.width, canvas.height);
       starsArr.forEach((star) => {
         // Calculate subtle offset based on mouse position and star's depth
-        const parallaxFactor = 0.001;
+        const parallaxFactor = 0.002;
         const depthFactor = (1000 - star.z) / 1000; // Stars further away move less
         const offsetX = (mousePosition.current.x - canvas.width / 2) * parallaxFactor * depthFactor;
         const offsetY = (mousePosition.current.y - canvas.height / 2) * parallaxFactor * depthFactor;
