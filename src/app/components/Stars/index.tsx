@@ -9,6 +9,9 @@ class Star {
   y: number;
   radius: number;
   velocity: number;
+  opacity: number;
+  opacityDecrement: number;
+  fadeStart: number;
   context: CanvasRenderingContext2D | null;
   canvas: HTMLCanvasElement;
 
@@ -25,10 +28,13 @@ class Star {
     this.velocity = velocity;
     this.canvas = canvas;
     this.context = canvas.getContext('2d');
+    this.opacity = 1;
+    this.fadeStart = Math.random() * (canvas.height * 0.6) + (canvas.height * 0.4);
+    this.opacityDecrement = Math.random() * 0.01 + 0.005; 
   }
 
   public draw() {
-    const { context } = this;
+    const { context, opacity } = this;
 
     if (!context) {
       return console.log("Star context is null.");
@@ -36,17 +42,25 @@ class Star {
 
     context.beginPath();
     context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-    context.fillStyle = '#FFF';
+    context.fillStyle = `rgba(255, 255, 255, ${opacity})`; 
     context.fill();
   }
 
   public update() {
     this.y += this.velocity;
     this.x += this.velocity;
-    if (this.y > this.canvas.height) {
+
+    if (this.y > this.fadeStart) {
+      this.opacity -= this.opacityDecrement;
+    }
+
+    if (this.y > this.canvas.height || this.opacity <= 0) {
       this.y = 0 - this.radius;
       this.x = Math.random() * this.canvas.width;
+      this.opacity = 1;
+      this.fadeStart = Math.random() * (this.canvas.height * 0.6) + (this.canvas.height * 0.4);
     }
+
     this.draw();
   }
 }
