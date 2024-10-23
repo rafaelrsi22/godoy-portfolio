@@ -4,71 +4,20 @@ interface StarsProps {
   numOfStars: number;
 }
 
-class Star {
+interface Star {
   x: number;
   y: number;
+  z: number;
   radius: number;
   velocity: number;
-  opacity: number;
-  opacityDecrement: number;
-  fadeStart: number;
-  context: CanvasRenderingContext2D | null;
-  canvas: HTMLCanvasElement;
-
-  constructor(
-    x: number,
-    y: number,
-    radius: number,
-    velocity: number,
-    canvas: HTMLCanvasElement
-  ) {
-    this.x = x;
-    this.y = y;
-    this.radius = radius;
-    this.velocity = velocity;
-    this.canvas = canvas;
-    this.context = canvas.getContext('2d');
-    this.opacity = 1;
-    this.fadeStart = Math.random() * (canvas.height * 0.6) + (canvas.height * 0.4);
-    this.opacityDecrement = Math.random() * 0.01 + 0.005; 
-  }
-
-  public draw() {
-    const { context, opacity } = this;
-
-    if (!context) {
-      return console.log("Star context is null.");
-    }
-
-    context.beginPath();
-    context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-    context.fillStyle = `rgba(255, 255, 255, ${opacity})`; 
-    context.fill();
-  }
-
-  public update() {
-    this.y += this.velocity;
-    this.x += this.velocity;
-
-    if (this.y > this.fadeStart) {
-      this.opacity -= this.opacityDecrement;
-    }
-
-    if (this.y > this.canvas.height || this.opacity <= 0) {
-      this.y = 0 - this.radius;
-      this.x = Math.random() * this.canvas.width;
-      this.opacity = 1;
-      this.fadeStart = Math.random() * (this.canvas.height * 0.6) + (this.canvas.height * 0.4);
-    }
-
-    this.draw();
-  }
+  brightness: number;
 }
 
 export default function Stars({
   numOfStars
 }: StarsProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const mousePosition = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -82,30 +31,80 @@ export default function Stars({
     const starsArr: Star[] = [];
 
     for (let i = 0; i < numOfStars; i++) {
-      const x = Math.random() * canvas.width;
-      const y = Math.random() * canvas.height;
-      const radius = Math.random() * 1.5;
-      const velocity = Math.random() * 0.35 + 0.1;
-      starsArr.push(new Star(x, y, radius, velocity, canvas));
+      starsArr.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        z: Math.random() * 1000,
+        radius: Math.random() * 1.5 + 0.5,
+        velocity: Math.random() * 0.35 + 0.1,
+        brightness: Math.random()
+      });
     }
+
+    const handleMouseMove = (event: MouseEvent) => {
+      mousePosition.current = {
+        x: event.clientX,
+        y: event.clientY
+      };
+    };
 
     const animate = () => {
       context.clearRect(0, 0, canvas.width, canvas.height);
-      starsArr.forEach((star) => star.update());
+      starsArr.forEach((star) => {
+        // Calculate subtle offset based on mouse position and star's depth
+        const parallaxFactor = 0.001;
+        const depthFactor = (1000 - star.z) / 1000; // Stars further away move less
+        const offsetX = (mousePosition.current.x - canvas.width / 2) * parallaxFactor * depthFactor;
+        const offsetY = (mousePosition.current.y - canvas.height / 2) * parallaxFactor * depthFactor;
+        
+        // Update star position
+        star.x += star.velocity + offsetX;
+        star.y += star.velocity + offsetY;
+
+        // Wrap around canvas
+        if (star.x > canvas.width) star.x = 0;
+        if (star.y > canvas.height) star.y = 0;
+        if (star.x < 0) star.x = canvas.width;
+        if (star.y < 0) star.y = canvas.height;
+
+        // Calculate size based on depth
+        const size = star.radius * (1000 - star.z) / 1000;
+
+        // Calculate brightness based on mouse proximity and random twinkle
+        const distanceToMouse = Math.hypot(star.x - mousePosition.current.x, star.y - mousePosition.current.y);
+        const maxDistance = Math.hypot(canvas.width, canvas.height);
+        const mouseBrightness = 1 - (distanceToMouse / maxDistance);
+        const twinkle = Math.random() * 0.3 + 0.7;
+        const brightness = (star.brightness * 0.5 + mouseBrightness * 0.5) * twinkle;
+
+        // Draw star
+        context.beginPath();
+        context.arc(star.x, star.y, size, 0, Math.PI * 2);
+        context.fillStyle = `rgba(255, 255, 255, ${brightness})`;
+        context.fill();
+        context.closePath();
+      });
       requestAnimationFrame(animate);
-    }
+    };
 
     animate();
 
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
+    window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", handleResize);
+    };
   }, [numOfStars]);
+
+  const handleResize = () => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+  };
 
   return (
     <canvas
