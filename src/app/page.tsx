@@ -35,7 +35,15 @@ export default function Home() {
           </GradientText>
         </FadeIn>
         <FadeIn duration={1}>
-          <GradientButton content="Contact me" />
+          <GradientButton 
+            content="Contact me" 
+            onClick={() => {
+              const contactSection = document.getElementById("contact-section");
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+          />
         </FadeIn>
         <FadeIn duration={1.5}>
           <ViewMoreLink 
