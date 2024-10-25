@@ -1,7 +1,5 @@
 import TextInput from "./TextInput";
 import TextArea from "./TextArea";
-import GradientButton from "../GradientButton";
-import FadeIn from "../FadeIn";
 import GradientText from "../GradientText";
 import { useState } from "react";
 

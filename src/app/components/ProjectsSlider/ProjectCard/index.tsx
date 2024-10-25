@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { FaReact, FaNodeJs, FaPython } from 'react-icons/fa';
 import { SiTypescript, SiJavascript } from 'react-icons/si';
 
@@ -57,7 +58,7 @@ export default function ProjectCard({
         })}
       </div>
       <div className="flex-grow rounded-lg border border-[#5A5A5E] overflow-hidden">
-        <img 
+        <Image 
           src={imageSrc} 
           alt={imageAlt} 
           className="w-full h-full object-cover"

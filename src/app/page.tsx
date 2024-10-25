@@ -14,7 +14,6 @@ import Paragraph from './components/Paragraph';
 import GradientDivider from "./components/GradientDivider";
 import ProjectsSlider from "./components/ProjectsSlider";
 import DollarSigns from "./components/DollarSigns";
-import { motion } from "framer-motion";
 import ContactForm from "./components/ContactForm";
 
 export default function Home() {

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-
+import Image from 'next/image';
 interface ServiceCardProps {
   imageSrc: string;
   imageAlt: string;
@@ -39,7 +39,7 @@ export default function ServiceCard({
         transition: { duration: 0.3 }
       }}
     >
-      <img 
+      <Image 
         src={imageSrc} 
         alt={imageAlt} 
         className="w-40 h-40 my-4 mx-auto"
