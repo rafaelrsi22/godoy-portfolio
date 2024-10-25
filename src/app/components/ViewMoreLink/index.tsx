@@ -27,7 +27,7 @@ export default function ViewMoreLink({
       onClick={handleClick}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
-      className={className}
+      className={`${className} select-none`}
     >
       <GradientText className="flex flex-col items-center">
         View more

@@ -27,7 +27,40 @@ export default function ParallaxSection({
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 1, ease: "easeOut" }}
     >
-      <div>{children}</div>
+      <div className="max-w-[1400px] mx-auto">
+        {children}
+      </div>
+      <div className="relative mt-36">
+        <motion.div
+          className="absolute left-0 right-0 h-[400%] bottom-0"
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: 1,
+            background: [
+              "radial-gradient(circle at 50% 100%, rgba(171, 119, 226, 0.1) 0%, rgba(9, 9, 11, 0) 60%)",
+              "radial-gradient(circle at 52% 98%, rgba(171, 119, 226, 0.1) 0%, rgba(9, 9, 11, 0) 60%)",
+              "radial-gradient(circle at 48% 102%, rgba(171, 119, 226, 0.1) 0%, rgba(9, 9, 11, 0) 60%)",
+              "radial-gradient(circle at 50% 100%, rgba(171, 119, 226, 0.1) 0%, rgba(9, 9, 11, 0) 60%)",
+            ],
+          }}
+          transition={{
+            opacity: { duration: 1, ease: "easeIn" },
+            background: {
+              duration: 25,
+              ease: "easeInOut",
+              repeat: Infinity,
+              repeatType: "reverse",
+            },
+          }}
+        />
+        <footer className="relative border-t-2 border-t-[#F4F4F5] border-opacity-5">
+          <div className="container mx-auto pt-12 pb-24 text-gray-400">
+            <p className='max-w-2xl'>
+              © 2024 Rafael Godoy | Dedicated to delivering   innovative and efficient software solutions. With a focus on precision and quality, I transform ideas into robust digital products that drive success and exceed expectations, every step of the way.
+            </p>
+          </div>
+        </footer>
+      </div>
     </motion.section>
   );
 }

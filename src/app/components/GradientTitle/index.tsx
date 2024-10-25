@@ -10,7 +10,7 @@ export default function GradientTitle({
   mainTitle,
   children,
 }: GradientTitleProps) {
-  const className = "font-bold text-center text-6xl py-2";
+  const className = "font-bold text-center text-3xl lg:text-6xl py-2";
 
   const letterAnimation = {
     hidden: { opacity: 0, y: 50 },
