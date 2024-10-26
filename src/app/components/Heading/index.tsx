@@ -27,7 +27,7 @@ export default function Heading({
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <Tag 
-        className={`text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-[#FFFFFF] to-[#9b9b9e] ${className}`}
+        className={`text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-[#FFFFFF] to-[#a8a8ac] ${className}`}
       >
         {children}
       </Tag>
