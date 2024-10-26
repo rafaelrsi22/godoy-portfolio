@@ -67,7 +67,7 @@ export default function GradientTitle({
               style={{
                 display: "inline-block",
                 backgroundImage:
-                  "linear-gradient(to bottom, #FFFFFF, #71717A)",
+                  "linear-gradient(to bottom, #FFFFFF, #a8a8ac)",
                 backgroundClip: "text",
                 WebkitBackgroundClip: "text",
                 color: "transparent",
