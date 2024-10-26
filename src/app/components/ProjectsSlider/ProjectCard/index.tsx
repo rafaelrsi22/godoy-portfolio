@@ -1,16 +1,26 @@
 import React from 'react';
-import Image from 'next/image';
-import { FaReact, FaNodeJs, FaPython } from 'react-icons/fa';
-import { SiTypescript, SiJavascript } from 'react-icons/si';
+import { FaReact, FaNodeJs, FaPython, FaFigma } from 'react-icons/fa';
+import { SiTypescript, SiJavascript, SiVercel, SiDocker, SiNextdotjs, SiPostgresql, SiExpress, SiExpo } from 'react-icons/si';
+import { RiTailwindCssLine } from 'react-icons/ri';
+import { FaAws } from 'react-icons/fa6';
+import { motion, AnimatePresence } from 'framer-motion';
 
-// Objeto de mapeamento para ícones e cores de fundo
 const techIcons: { [key: string]: { icon: React.ElementType, bgColor: string } } = {
   'React': { icon: FaReact, bgColor: '#4da3bb' },
+  'Tailwind': { icon: RiTailwindCssLine, bgColor: 'rgb(134, 136, 247)' },
+  'Vercel': { icon: SiVercel, bgColor: 'rgb(15, 15, 15)' },
+  'Figma': { icon: FaFigma, bgColor: 'rgb(255, 120, 110)' },
   'Node.js': { icon: FaNodeJs, bgColor: '#339933' },
+  'Docker': { icon: SiDocker, bgColor: '#003366' },
+  'Next.JS': { icon: SiNextdotjs, bgColor: '#000000' },
   'Python': { icon: FaPython, bgColor: '#3776AB' },
   'TypeScript': { icon: SiTypescript, bgColor: '#3178C6' },
   'JavaScript': { icon: SiJavascript, bgColor: '#F7DF1E' },
-  // Adicione mais tecnologias conforme necessário
+  'PostgreSQL': { icon: SiPostgresql, bgColor: '#336791' },
+  'AWS': { icon: FaAws, bgColor: '#FF9900' },
+  'Express': { icon: SiExpress, bgColor: '#000000' },
+  'ReactNative': { icon: FaReact, bgColor: '#4da3bb' },
+  'Expo': { icon: SiExpo, bgColor: '#000000' }
 };
 
 interface ProjectCardProps {
@@ -32,52 +42,143 @@ export default function ProjectCard({
   imageAlt,
   isActive = false
 }: ProjectCardProps) {
+  const renderTechTags = () => {
+    return techTags.map((tech, index) => {
+      const techInfo = techIcons[tech] || { icon: null, bgColor: '#000000' };
+      const Icon = techInfo.icon;
+      return (
+        <span key={index} className="flex items-center gap-1 text-xs font-semibold px-2.5 py-0.5 rounded-full" style={{ backgroundColor: techInfo.bgColor, color: '#FFFFFF' }}>
+          {Icon && <Icon />}
+          {tech}
+        </span>
+      );
+    });
+  };
+
+  const renderTags = () => {
+    return tags.map((tag, index) => (
+      <span key={index} className="bg-[#252525] text-white text-xs font-semibold px-2.5 py-0.5 rounded-full">
+        {tag}
+      </span>
+    ));
+  };
+
+  const buttonVariants = {
+    initial: { 
+      scale: 0.9, 
+      opacity: 0,
+      y: 10
+    },
+    animate: { 
+      scale: 1, 
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 500,
+        damping: 25,
+        mass: 0.5,
+        duration: 0.2
+      }
+    },
+    exit: { 
+      scale: 0.9, 
+      opacity: 0,
+      y: -10,
+      transition: {
+        type: "spring",
+        stiffness: 500,
+        damping: 25,
+        mass: 0.5,
+        duration: 0.2
+      }
+    },
+    hover: {
+      scale: 1.03,
+      transition: {
+        type: "spring",
+        stiffness: 700,
+        damping: 15
+      }
+    }
+  };
+
   return (
-    <div className="text-white px-4 h-[300px] flex flex-col">
+    <div className="text-white px-4 h-[500px] flex flex-col">
       <h2 className="font-bold text-2xl tracking-wide">{title}</h2>
       <p className="opacity-60 mb-4">{description}</p>
       <div className="flex flex-wrap gap-2 mb-4">
-        {tags.map((tag, index) => (
-          <span key={index} className="bg-[#252525] text-white text-xs font-semibold px-2.5 py-0.5 rounded-full">
-            {tag}
-          </span>
-        ))}
-        {techTags.map((tech, index) => {
-          const techInfo = techIcons[tech] || { icon: null, bgColor: '#000000' };
-          const Icon = techInfo.icon;
-          return (
-            <span 
-              key={index} 
-              className="flex items-center gap-1 text-xs font-semibold px-2.5 py-0.5 rounded-full" 
-              style={{ backgroundColor: techInfo.bgColor, color: '#FFFFFF' }}
-            >
-              {Icon && <Icon />}
-              {tech}
-            </span>
-          );
-        })}
+        {renderTechTags()}
+        {renderTags()}
       </div>
       <div className="flex-grow rounded-lg border border-[#5A5A5E] overflow-hidden">
-        <Image 
+        <img 
           src={imageSrc} 
-          alt={imageAlt} 
-          className="w-full h-full object-cover"
+          alt={imageAlt}
+          className="w-full object-cover h-[300px]"
         />
       </div>
-      <button className="w-full mt-6 py-2 rounded-md text-center text-black font-black relative overflow-hidden group hover:scale-105 transition-transform duration-300 ease-in-out">
-        <span className="relative z-10">view more</span>
-        <div 
-          className="absolute inset-0" 
-          style={{
-            backgroundImage: !isActive 
-              ? 'linear-gradient(90deg, #838383 0%, #FFFFFF 22%, #838383 48%, #FFFFFF 73%, #838383 100%)'
-              : 'linear-gradient(90deg, rgba(195,135,37,1) 0%, rgba(255,218,158,1) 16%, rgba(195,135,37,1) 48%, rgba(255,218,158,1) 82%, rgba(251,156,0,1) 100%)',
-            backgroundSize: '200% 100%',
-            animation: 'shimmer 3s ease-in-out infinite'
-          }}
-        ></div>
-        <div className="absolute inset-0 border border-[#F9F9F9] rounded-md opacity-20"></div>
-      </button>
+      <AnimatePresence mode="wait">
+        {isActive ? (
+          <motion.button
+            key="active"
+            variants={buttonVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            whileHover="hover"
+            className="w-full mt-6 py-2 flex items-center justify-center rounded-md text-center text-black font-black relative overflow-hidden"
+          >
+            <span className="relative z-10">view more</span>
+            <motion.div 
+              className="absolute inset-0" 
+              style={{
+                backgroundImage: 'linear-gradient(90deg, rgba(195,135,37,1) 0%, rgba(255,218,158,1) 16%, rgba(195,135,37,1) 48%, rgba(255,218,158,1) 82%, rgba(251,156,0,1) 100%)',
+                backgroundSize: '200% 100%',
+              }}
+              animate={{
+                backgroundPosition: ['0% 0%', '100% 0%'],
+              }}
+              transition={{
+                duration: 2,
+                ease: "linear",
+                repeat: Infinity,
+                repeatType: "reverse"
+              }}
+            />
+            <div className="absolute inset-0 border border-[#F9F9F9] rounded-md opacity-20"></div>
+          </motion.button>
+        ) : (
+          <motion.button
+            key="inactive"
+            variants={buttonVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            whileHover="hover"
+            className="w-full mt-6 py-2 flex items-center justify-center rounded-md text-center text-black font-black relative overflow-hidden"
+          >
+            <span className="relative z-10">view more</span>
+            <motion.div 
+              className="absolute inset-0" 
+              style={{
+                backgroundImage: 'linear-gradient(90deg, #838383 0%, #FFFFFF 22%, #838383 48%, #FFFFFF 73%, #838383 100%)',
+                backgroundSize: '200% 100%',
+              }}
+              animate={{
+                backgroundPosition: ['0% 0%', '100% 0%'],
+              }}
+              transition={{
+                duration: 2,
+                ease: "linear",
+                repeat: Infinity,
+                repeatType: "reverse"
+              }}
+            />
+            <div className="absolute inset-0 border border-[#F9F9F9] rounded-md opacity-20"></div>
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
-};
+}

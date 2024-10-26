@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, EffectCoverflow, Autoplay } from 'swiper/modules';
 import { Swiper as SwiperType } from 'swiper';
@@ -11,6 +11,41 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 import ProjectCard from './ProjectCard';
 
+const projects = [
+  {
+    title: "ABE Events Website",
+    description: "The project includes the home page, about page, services page, and contact page for ABE Events.",
+    tags: ["Reliability", "Efficiency", "Innovation"],
+    techTags: ["React", "Node.js", "TypeScript", "Tailwind", "Figma", "Vercel"],
+    imageSrc: "https://res.cloudinary.com/dmp8jxp7c/image/upload/v1729953387/wauf4i8hrdvbkexcyvh3.png",
+    imageAlt: "ABE Events"
+  },
+  {
+    title: "Credentech System",
+    description: "A system where it's possible to manage event credentials. The system has integrations with event turnstiles and credentialing kiosks.",
+    tags: ["Security", "Scalability"],
+    techTags: ["Next.JS", "Node.js", "TypeScript", "Tailwind", "Vercel", "Docker", "PostgreSQL", "AWS", "Express"],
+    imageSrc: "https://res.cloudinary.com/dmp8jxp7c/image/upload/v1729954268/mrqbxcb6rer7ktloenig.png",
+    imageAlt: "Credentech"
+  },
+  {
+    title: "Servicyn",
+    description: "Servicyn application, a platform that allows users to order service providers for home care.",
+    tags: ["Security", "Scalability"],
+    techTags: ["Next.JS", "ReactNative", "Expo", "TypeScript", "Tailwind", "Vercel", "Docker", "PostgreSQL", "AWS", "Express"],
+    imageSrc: "https://res.cloudinary.com/dmp8jxp7c/image/upload/v1729954426/zrvigflc3rpzsduibda5.png",
+    imageAlt: "Servicyn"
+  },
+  {
+    title: "Paladino & Mello Landing Page",
+    description: "Landing page for Paladino & Mello legal consultancy, a reputable law firm. The page is designed to attract potential clients and establish credibility.",
+    tags: ["Reliability", "Efficiency", "Innovation"],
+    techTags: ["React", "Node.js", "TypeScript", "Tailwind", "Figma", "Vercel"],
+    imageSrc: "https://res.cloudinary.com/dmp8jxp7c/image/upload/v1729954114/dbaqyoatumsdszkd1uzg.png",
+    imageAlt: "Paladino & Mello"
+  }
+]
+
 export default function ProjectsSlider() {
   const swiperRef = useRef<SwiperType>();
   const [activeIndex, setActiveIndex] = useState(0);
@@ -18,6 +53,7 @@ export default function ProjectsSlider() {
     triggerOnce: true,
     threshold: 0.1,
   });
+  const [windowWidth, setWindowWidth] = useState(0);
 
   const containerVariants = {
     hidden: { opacity: 0, scale: 0.8 },
@@ -68,6 +104,13 @@ export default function ProjectsSlider() {
     />
   )
 
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <motion.div 
       ref={ref}
@@ -79,7 +122,7 @@ export default function ProjectsSlider() {
       <Swiper
         modules={[Navigation, EffectCoverflow, Autoplay]}
         spaceBetween={160}
-        slidesPerView={2}
+        slidesPerView={windowWidth < 700 ? 1 : 2}
         loop={true}
         onBeforeInit={(swiper) => {
           swiperRef.current = swiper;
@@ -111,23 +154,23 @@ export default function ProjectsSlider() {
         }}
         className="w-full"
       >
-        {[1, 2, 3, 4, 5].map((_, index) => (
+        {projects.map((project, index) => ( 
           <SwiperSlide key={index}>
             <motion.div variants={slideVariants}>
               <ProjectCard
-                title="project vflows"
-                description="projeto realizado durante a minha estadia na V-FLOWS"
-                tags={["Confiabilidade", "Eficiência", "Inovação"]}
-                techTags={["React", "Node.js", "TypeScript"]}
-                imageSrc="/path-to-your-image.jpg"
-                imageAlt="Project VFlows"
+                title={project.title}
+                description={project.description}
+                tags={project.tags}
+                techTags={project.techTags}
+                imageSrc={project.imageSrc}
+                imageAlt={project.imageAlt}
                 isActive={activeIndex === index}
               />
             </motion.div>
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-between z-10" style={{width: '110%'}}>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-between z-10" style={{width: windowWidth < 700 ? '120%' : '110%'}}>
         <SliderButton
           onClick={() => swiperRef.current?.slidePrev()}
           className="swiper-button-prev"

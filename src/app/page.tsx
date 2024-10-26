@@ -51,8 +51,8 @@ export default function Home() {
           />
         </FadeIn>
       </main>
-      <ParallaxSection className="pt-48 px-12">
-        <Section id="about-section" className="flex justify-between">
+      <ParallaxSection className="pt-48 px-0 md:px-16">
+        <Section id="about-section" className="flex flex-col gap-48 items-center md:gap-0 md:flex-row justify-between px-8 md:px-0">
           <div className="flex flex-col gap-8">
             <Heading
               level={2}
@@ -69,7 +69,7 @@ export default function Home() {
           </div>
           <DollarSigns />
         </Section>
-        <Section id="services-section" className="flex flex-col gap-8 mt-48">
+        <Section id="services-section" className="flex flex-col gap-8 mt-48 px-8 md:px-0">
           <Heading level={2} className="py-1">
             What about my <br/>
             professional experience?

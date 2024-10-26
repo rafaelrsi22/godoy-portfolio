@@ -29,7 +29,7 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 ### Instalação
 
 1. Clone o repositório:
-   git clone https://github.com/seu-usuario/seu-repositorio.git
+   git clone https://github.com/rafaelrsi22/godoy-portfolio
 
 2. Navegue até o diretório do projeto:
    cd seu-repositorio
@@ -45,29 +45,9 @@ Para rodar o projeto em ambiente de desenvolvimento, use o seguinte comando:
 
 Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o projeto.
 
-## 📦 Deploy
-
-O projeto pode ser facilmente deployado em qualquer plataforma que suporte aplicações **Next.js**. Aqui estão algumas opções:
-
-- [Vercel](https://vercel.com/) (recomendado)
-- [Netlify](https://www.netlify.com/)
-- [Heroku](https://www.heroku.com/)
-
-## 📂 Estrutura do Projeto
-
-Aqui está uma visão geral da estrutura de pastas do projeto:
-
-.
-├── components/        # Componentes React reutilizáveis
-├── pages/             # Páginas do Next.js
-├── public/            # Arquivos estáticos
-├── styles/            # Estilos globais e específicos
-├── README.md          # Documentação do projeto
-└── package.json       # Dependências e scripts do projeto
-
 ## 📧 Contato
 
-Se você quiser saber mais sobre o projeto ou entrar em contato, sinta-se à vontade para enviar uma mensagem!
+Informações de contato estão disponíveis na página.
 
 ---
-Desenvolvido com ❤️ por [Seu Nome](https://seuwebsite.com)
+Desenvolvido por [Rafael Godoy](https://godoy-portfolio.vercel.app/)

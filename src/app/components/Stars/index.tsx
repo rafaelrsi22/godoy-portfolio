@@ -51,33 +51,27 @@ export default function Stars({
     const animate = () => {
       context.clearRect(0, 0, canvas.width, canvas.height);
       starsArr.forEach((star) => {
-        // Calculate subtle offset based on mouse position and star's depth
         const parallaxFactor = 0.002;
-        const depthFactor = (1000 - star.z) / 1000; // Stars further away move less
+        const depthFactor = (1000 - star.z) / 1000;
         const offsetX = (mousePosition.current.x - canvas.width / 2) * parallaxFactor * depthFactor;
         const offsetY = (mousePosition.current.y - canvas.height / 2) * parallaxFactor * depthFactor;
         
-        // Update star position
         star.x += star.velocity + offsetX;
         star.y += star.velocity + offsetY;
 
-        // Wrap around canvas
         if (star.x > canvas.width) star.x = 0;
         if (star.y > canvas.height) star.y = 0;
         if (star.x < 0) star.x = canvas.width;
         if (star.y < 0) star.y = canvas.height;
 
-        // Calculate size based on depth
         const size = star.radius * (1000 - star.z) / 1000;
 
-        // Calculate brightness based on mouse proximity and random twinkle
         const distanceToMouse = Math.hypot(star.x - mousePosition.current.x, star.y - mousePosition.current.y);
         const maxDistance = Math.hypot(canvas.width, canvas.height);
         const mouseBrightness = 1 - (distanceToMouse / maxDistance);
         const twinkle = Math.random() * 0.3 + 0.7;
         const brightness = (star.brightness * 0.5 + mouseBrightness * 0.5) * twinkle;
 
-        // Draw star
         context.beginPath();
         context.arc(star.x, star.y, size, 0, Math.PI * 2);
         context.fillStyle = `rgba(255, 255, 255, ${brightness})`;

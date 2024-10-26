@@ -22,7 +22,7 @@ export default function ParallaxSection({
     <motion.section
       id={id}
       ref={ref}
-      className={`relative bg-[#09090B] ${className}`}
+      className={`relative bg-[#09090b]/80 ${className}`}
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 1, ease: "easeOut" }}
@@ -55,7 +55,7 @@ export default function ParallaxSection({
         />
         <footer className="relative border-t-2 border-t-[#F4F4F5] border-opacity-5">
           <div className="container mx-auto pt-12 pb-24 text-gray-400">
-            <p className='max-w-2xl'>
+            <p className='max-w-2xl px-8 md:px-0'>
               © 2024 Rafael Godoy | Dedicated to delivering   innovative and efficient software solutions. With a focus on precision and quality, I transform ideas into robust digital products that drive success and exceed expectations, every step of the way.
             </p>
           </div>
