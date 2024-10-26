@@ -4,6 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 interface TextInputProps {
   label: string;
   id: string;
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
   required?: boolean;
 }
@@ -11,15 +14,17 @@ interface TextInputProps {
 export default function TextInput({ 
   label, 
   id,
+  name,
+  value,
+  onChange,
   className,
   required = false
 }: TextInputProps) {
   const [isFocused, setIsFocused] = useState(false);
-  const [value, setValue] = useState('');
 
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => onChange(e);
 
   const labelVariants = {
     default: { y: 0, scale: 1, opacity: 0.5 },
@@ -53,6 +58,7 @@ export default function TextInput({
       <input 
         type="text" 
         id={id} 
+        name={name}
         className="bg-transparent text-[#F4F4F5] text-opacity-80 outline-none border-[#F4F4F5] border-opacity-10 border rounded-md p-2 pt-4"
         required={required}
         onFocus={handleFocus}

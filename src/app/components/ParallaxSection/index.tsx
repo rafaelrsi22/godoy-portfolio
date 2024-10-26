@@ -22,7 +22,8 @@ export default function ParallaxSection({
     <motion.section
       id={id}
       ref={ref}
-      className={`relative bg-[#09090b]/80 ${className}`}
+      // className={`relative bg-[#09090b]/80 ${className}`}
+      className={`relative bg-gradient-to-b from-transparent from-0% via-[#09090b]/80 via-30% to-[#09090b]/80 ${className}`}
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 1, ease: "easeOut" }}

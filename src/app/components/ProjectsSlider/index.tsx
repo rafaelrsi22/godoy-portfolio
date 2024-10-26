@@ -11,7 +11,17 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 import ProjectCard from './ProjectCard';
 
-const projects = [
+export interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+  techTags: string[];
+  imageSrc: string;
+  imageAlt: string;
+  redirect?: string;
+}
+
+const projects: Project[] = [
   {
     title: "ABE Events Website",
     description: "The project includes the home page, about page, services page, and contact page for ABE Events.",
@@ -46,7 +56,13 @@ const projects = [
   }
 ]
 
-export default function ProjectsSlider() {
+interface ProjectsSliderProps {
+  onClick: (project: Project) => void;
+}
+
+export default function ProjectsSlider({ 
+  onClick 
+}: ProjectsSliderProps) {
   const swiperRef = useRef<SwiperType>();
   const [activeIndex, setActiveIndex] = useState(0);
   const [ref, inView] = useInView({
@@ -95,8 +111,8 @@ export default function ProjectsSlider() {
       onClick={onClick}
       className={className}
       style={{ 
-        color: 'rgb(171, 119, 226)',
-        filter: 'drop-shadow(0 0 5px rgba(171, 119, 226, 0.5))',
+        color: 'rgb(255, 255, 255)',
+        filter: 'drop-shadow(0 0 5px rgba(243, 243, 243, 0.5))',
         transition: 'filter 0.3s ease-in-out'
       }}
       onMouseEnter={(e) => e.currentTarget.style.filter = 'drop-shadow(0 0 10px rgba(171, 119, 226, 0.8))'}
@@ -165,6 +181,9 @@ export default function ProjectsSlider() {
                 imageSrc={project.imageSrc}
                 imageAlt={project.imageAlt}
                 isActive={activeIndex === index}
+                onClick={() => {
+                  onClick(project);
+                }}
               />
             </motion.div>
           </SwiperSlide>

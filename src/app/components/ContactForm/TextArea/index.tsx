@@ -4,6 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 interface TextAreaProps {
   label: string;
   id: string;
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   className?: string;
   rows?: number;
   required?: boolean;
@@ -12,16 +15,18 @@ interface TextAreaProps {
 export default function TextArea({ 
   label, 
   id,
+  name,
+  value,
+  onChange,
   className,
   rows = 4,
   required = false
 }: TextAreaProps) {
   const [isFocused, setIsFocused] = useState(false);
-  const [value, setValue] = useState('');
 
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => setValue(e.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => onChange(e);
 
   const labelVariants = {
     default: { y: 0, scale: 1, opacity: 0.5 },
@@ -56,6 +61,7 @@ export default function TextArea({
         id={id} 
         rows={rows}
         className="bg-transparent text-[#F4F4F5] text-opacity-80 outline-none border-[#F4F4F5] border-opacity-10 border rounded-md p-2 pt-6 resize-none"
+        name={name}
         required={required}
         onFocus={handleFocus}
         onBlur={handleBlur}

@@ -12,11 +12,20 @@ import Section from './components/Section';
 import Heading from './components/Heading';
 import Paragraph from './components/Paragraph';
 import GradientDivider from "./components/GradientDivider";
-import ProjectsSlider from "./components/ProjectsSlider";
+import ProjectsSlider, { Project } from "./components/ProjectsSlider";
 import DollarSigns from "./components/DollarSigns";
 import ContactForm from "./components/ContactForm";
+import { useState } from "react";
+import Modal from "./components/Modal";
+import ProjectCard from "./components/ProjectsSlider/ProjectCard";
 
 export default function Home() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  const handleProjectClick = (project: Project) => {
+    setSelectedProject(project);
+  };
+
   return (
     <div className="w-full">
       <BloomBackground />
@@ -74,7 +83,9 @@ export default function Home() {
             What about my <br/>
             professional experience?
           </Heading>
-          <ProjectsSlider />
+          <ProjectsSlider 
+            onClick={handleProjectClick}
+          />
           <GradientDivider
             className="my-24"
           />
@@ -86,6 +97,24 @@ export default function Home() {
           <ContactForm />
         </Section>
       </ParallaxSection>
+      <Modal 
+        isOpen={!!selectedProject} 
+        onClose={() => setSelectedProject(null)}>
+          {selectedProject && (
+            <div>
+              <ProjectCard
+                title={selectedProject.title}
+                description={selectedProject.description}
+                tags={selectedProject.tags}
+                techTags={selectedProject.techTags}
+                imageSrc={selectedProject.imageSrc}
+                imageAlt={selectedProject.imageAlt}
+                redirect={selectedProject.redirect || "none"}
+                disabled={!selectedProject.redirect}
+              />
+            </div>
+          )}
+      </Modal>
     </div>
   );
 }

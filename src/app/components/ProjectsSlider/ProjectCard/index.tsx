@@ -31,6 +31,9 @@ interface ProjectCardProps {
   imageSrc: string;
   imageAlt: string;
   isActive?: boolean;
+  redirect?: string;
+  disabled?: boolean;
+  onClick?: () => void;
 }
 
 export default function ProjectCard({ 
@@ -40,7 +43,10 @@ export default function ProjectCard({
   techTags,
   imageSrc, 
   imageAlt,
-  isActive = false
+  redirect,
+  isActive = false,
+  disabled = false,
+  onClick
 }: ProjectCardProps) {
   const renderTechTags = () => {
     return techTags.map((tech, index) => {
@@ -119,7 +125,31 @@ export default function ProjectCard({
         />
       </div>
       <AnimatePresence mode="wait">
-        {isActive ? (
+        {redirect ? (
+          <motion.a
+            key="redirect"
+            target="_blank"
+            href={!disabled ? redirect : undefined}
+            rel="noopener noreferrer"
+            variants={buttonVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            whileHover={!disabled ? "hover" : undefined}
+            className={`w-full mt-6 py-2 flex items-center justify-center rounded-md text-center text-black font-black relative overflow-hidden ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+          >
+            <span className="relative z-10">Visit Project</span>
+            <motion.div 
+              className="absolute inset-0" 
+              style={{
+                backgroundImage: 'linear-gradient(90deg, #4a9d5f 0%, #7ceb98 22%, #4a9d5f 48%, #7ceb98 73%, #4a9d5f 100%)',
+                backgroundSize: '200% 100%',
+                filter: disabled ? 'brightness(0.7)' : 'none',
+              }}
+            />
+            <div className="absolute inset-0 border border-[#F9F9F9] rounded-md opacity-20"></div>
+          </motion.a>
+        ) : isActive ? (
           <motion.button
             key="active"
             variants={buttonVariants}
@@ -128,6 +158,7 @@ export default function ProjectCard({
             exit="exit"
             whileHover="hover"
             className="w-full mt-6 py-2 flex items-center justify-center rounded-md text-center text-black font-black relative overflow-hidden"
+            onClick={onClick}
           >
             <span className="relative z-10">view more</span>
             <motion.div 
@@ -135,15 +166,6 @@ export default function ProjectCard({
               style={{
                 backgroundImage: 'linear-gradient(90deg, rgba(195,135,37,1) 0%, rgba(255,218,158,1) 16%, rgba(195,135,37,1) 48%, rgba(255,218,158,1) 82%, rgba(251,156,0,1) 100%)',
                 backgroundSize: '200% 100%',
-              }}
-              animate={{
-                backgroundPosition: ['0% 0%', '100% 0%'],
-              }}
-              transition={{
-                duration: 2,
-                ease: "linear",
-                repeat: Infinity,
-                repeatType: "reverse"
               }}
             />
             <div className="absolute inset-0 border border-[#F9F9F9] rounded-md opacity-20"></div>
@@ -157,6 +179,7 @@ export default function ProjectCard({
             exit="exit"
             whileHover="hover"
             className="w-full mt-6 py-2 flex items-center justify-center rounded-md text-center text-black font-black relative overflow-hidden"
+            onClick={onClick}
           >
             <span className="relative z-10">view more</span>
             <motion.div 
@@ -164,15 +187,6 @@ export default function ProjectCard({
               style={{
                 backgroundImage: 'linear-gradient(90deg, #838383 0%, #FFFFFF 22%, #838383 48%, #FFFFFF 73%, #838383 100%)',
                 backgroundSize: '200% 100%',
-              }}
-              animate={{
-                backgroundPosition: ['0% 0%', '100% 0%'],
-              }}
-              transition={{
-                duration: 2,
-                ease: "linear",
-                repeat: Infinity,
-                repeatType: "reverse"
               }}
             />
             <div className="absolute inset-0 border border-[#F9F9F9] rounded-md opacity-20"></div>
