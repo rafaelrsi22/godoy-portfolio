@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import sgMail from '@sendgrid/mail';
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
+sgMail.setApiKey('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');
 
 export async function POST(request: Request) {
   try {
@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     
     const msg = {
       to: to,
-      from: process.env.FROM_EMAIL as string,
+      from: 'rafaelrsi108@gmail.com',
       subject: 'NOVO CONTATO - PORTFOLIO',
       text: content,
     };
