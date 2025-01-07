@@ -34,17 +34,9 @@ const projects: Project[] = [
     title: "Credentech System",
     description: "A system where it's possible to manage event credentials. The system has integrations with event turnstiles and credentialing kiosks.",
     tags: ["Security", "Scalability"],
-    techTags: ["Next.JS", "Node.js", "TypeScript", "Tailwind", "Vercel", "Docker", "PostgreSQL", "AWS", "Express"],
+    techTags: ["Next.JS", "Java", "Angular", "TypeScript", "Tailwind", "Vercel", "Docker", "PostgreSQL", "AWS"],
     imageSrc: "https://res.cloudinary.com/dmp8jxp7c/image/upload/v1729954268/mrqbxcb6rer7ktloenig.png",
     imageAlt: "Credentech"
-  },
-  {
-    title: "Servicyn",
-    description: "Servicyn application, a platform that allows users to order service providers for home care.",
-    tags: ["Security", "Scalability"],
-    techTags: ["Next.JS", "ReactNative", "Expo", "TypeScript", "Tailwind", "Vercel", "Docker", "PostgreSQL", "AWS", "Express"],
-    imageSrc: "https://res.cloudinary.com/dmp8jxp7c/image/upload/v1729954426/zrvigflc3rpzsduibda5.png",
-    imageAlt: "Servicyn"
   },
   {
     title: "Paladino & Mello Landing Page",

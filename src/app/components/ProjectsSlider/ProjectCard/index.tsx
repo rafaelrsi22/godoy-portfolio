@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaReact, FaNodeJs, FaPython, FaFigma } from 'react-icons/fa';
+import { FaReact, FaNodeJs, FaPython, FaFigma, FaJava, FaAngular } from 'react-icons/fa';
 import { SiTypescript, SiJavascript, SiVercel, SiDocker, SiNextdotjs, SiPostgresql, SiExpress, SiExpo } from 'react-icons/si';
 import { RiTailwindCssLine } from 'react-icons/ri';
 import { FaAws } from 'react-icons/fa6';
@@ -20,7 +20,9 @@ const techIcons: { [key: string]: { icon: React.ElementType, bgColor: string } }
   'AWS': { icon: FaAws, bgColor: '#FF9900' },
   'Express': { icon: SiExpress, bgColor: '#000000' },
   'ReactNative': { icon: FaReact, bgColor: '#4da3bb' },
-  'Expo': { icon: SiExpo, bgColor: '#000000' }
+  'Expo': { icon: SiExpo, bgColor: '#000000' },
+  'Java': { icon: FaJava, bgColor: '#007396' },
+  'Angular': { icon: FaAngular, bgColor: '#DD0031' }
 };
 
 interface ProjectCardProps {
