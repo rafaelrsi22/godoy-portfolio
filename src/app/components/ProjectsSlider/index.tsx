@@ -28,7 +28,8 @@ const projects: Project[] = [
     tags: ["Reliability", "Efficiency", "Innovation"],
     techTags: ["React", "Node.js", "TypeScript", "Tailwind", "Figma", "Vercel"],
     imageSrc: "https://res.cloudinary.com/dmp8jxp7c/image/upload/v1729953387/wauf4i8hrdvbkexcyvh3.png",
-    imageAlt: "ABE Events"
+    imageAlt: "ABE Events",
+    redirect: "https://abeventos.com/"
   },
   {
     title: "Credentech System",
@@ -45,6 +46,15 @@ const projects: Project[] = [
     techTags: ["React", "Node.js", "TypeScript", "Tailwind", "Figma", "Vercel"],
     imageSrc: "https://res.cloudinary.com/dmp8jxp7c/image/upload/v1729954114/dbaqyoatumsdszkd1uzg.png",
     imageAlt: "Paladino & Mello"
+  },
+  {
+    title: "Arcane Works Studios",
+    description: "Arcane Studios website, with a landing page, blog section and a panel for the admininstrator creating his own blog.",
+    tags: ["Professionalism", "Efficiency", "Innovation"],
+    techTags: ["Next.JS", "MongoDB", "TypeScript", "Tailwind", "Figma", "Vercel"],
+    imageSrc: "https://res.cloudinary.com/dmp8jxp7c/image/upload/v1736855923/q9pn1tutktyil5xfnl4k.png",
+    imageAlt: "Arcane Works Studio",
+    redirect: "https://www.arcaneworks.studio/"
   }
 ]
 

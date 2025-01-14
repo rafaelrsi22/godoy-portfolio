@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaReact, FaNodeJs, FaPython, FaFigma, FaJava, FaAngular } from 'react-icons/fa';
+import { FaReact, FaNodeJs, FaPython, FaFigma, FaJava, FaAngular, FaDatabase } from 'react-icons/fa';
 import { SiTypescript, SiJavascript, SiVercel, SiDocker, SiNextdotjs, SiPostgresql, SiExpress, SiExpo } from 'react-icons/si';
 import { RiTailwindCssLine } from 'react-icons/ri';
 import { FaAws } from 'react-icons/fa6';
@@ -22,7 +22,8 @@ const techIcons: { [key: string]: { icon: React.ElementType, bgColor: string } }
   'ReactNative': { icon: FaReact, bgColor: '#4da3bb' },
   'Expo': { icon: SiExpo, bgColor: '#000000' },
   'Java': { icon: FaJava, bgColor: '#007396' },
-  'Angular': { icon: FaAngular, bgColor: '#DD0031' }
+  'Angular': { icon: FaAngular, bgColor: '#DD0031' },
+  'MongoDB': { icon: FaDatabase, bgColor: '#4DB33D' }
 };
 
 interface ProjectCardProps {
@@ -112,7 +113,7 @@ export default function ProjectCard({
   };
 
   return (
-    <div className="text-white px-4 h-[500px] flex flex-col">
+    <div className="text-white px-4 h-[500px] flex flex-col z-20 relative">
       <h2 className="font-bold text-2xl tracking-wide">{title}</h2>
       <p className="opacity-60 mb-4">{description}</p>
       <div className="flex flex-wrap gap-2 mb-4">
